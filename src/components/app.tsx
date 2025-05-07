@@ -13,7 +13,9 @@ const App = auto((props: { store: Store }) => {
   return (
     <>
       {contextHolder}
-      <Typography.Title>RingCentral Web Phone 2 Demo</Typography.Title>
+      <Typography.Title>
+        RingCentral Web Phone Demo for latest SDK
+      </Typography.Title>
       {store.rcToken === "" ? <Login store={store} /> : <Phone store={store} />}
     </>
   );
