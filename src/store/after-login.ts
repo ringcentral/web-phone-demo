@@ -92,7 +92,7 @@ const afterLogin = async () => {
   };
 
   // handle network outage
-  window.addEventListener("online", async () => {
+  globalThis.addEventListener("online", async () => {
     await recover();
   });
 
