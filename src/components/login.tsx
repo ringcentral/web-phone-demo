@@ -26,7 +26,7 @@ const Login = auto((props: { store: Store }) => {
           value={store.clientId}
         />
       </Form.Item>
-      <Form.Item label="Client Secret" required>
+      <Form.Item label="Client Secret">
         <Input.Password
           onChange={(e) => {
             store.clientSecret = e.target.value;

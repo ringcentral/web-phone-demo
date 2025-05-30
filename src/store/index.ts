@@ -65,10 +65,9 @@ export class Store {
   public async authCodeFlow() {
     if (
       this.server === "" ||
-      this.clientId === "" ||
-      this.clientSecret === ""
+      this.clientId === ""
     ) {
-      message.error("Please input server, client ID and client secret");
+      message.error("Please input server and client ID");
       return;
     }
     const rc = new RingCentral({
@@ -79,6 +78,7 @@ export class Store {
     const authorizeUriExtension = new AuthorizeUriExtension();
     await rc.installExtension(authorizeUriExtension);
     const authorizeUri = authorizeUriExtension.buildUri({
+      code_challenge_method: "S256",
       redirect_uri: globalThis.location.origin + globalThis.location.pathname +
         "callback.html",
     });
@@ -96,6 +96,7 @@ export class Store {
           redirect_uri: globalThis.location.origin +
             globalThis.location.pathname +
             "callback.html",
+          code_verifier: authorizeUriExtension.codeVerifier,
         });
         this.rcToken = token.access_token!;
         this.refreshToken = token.refresh_token!;
