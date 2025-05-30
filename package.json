@@ -17,11 +17,11 @@
     "manate": "^2.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "ringcentral-web-phone": "^2.1.7"
+    "ringcentral-web-phone": "^2.1.8"
   },
   "devDependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@types/node": "^22.15.28",
+    "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
     "buffer": "^6.0.3",
