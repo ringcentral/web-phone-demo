@@ -81,6 +81,17 @@ const afterLogin = async () => {
   store.webPhone = webPhone;
   await webPhone.start();
 
+  // display a message when outbound call failed:
+  webPhone.on("outboundCall", (callSession) => {
+    callSession.once("failed", (message) => {
+      globalThis.notifier.error({
+        message: "Outbound call failed",
+        description: message,
+        duration: 10,
+      });
+    });
+  });
+
   const recover = async () => {
     await webPhone.start();
     webPhone.callSessions.forEach((callSession) => {
