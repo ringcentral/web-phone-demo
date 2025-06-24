@@ -7,6 +7,7 @@ import type { SipInfo } from "ringcentral-web-phone/types";
 import waitFor from "wait-for-async";
 
 import store from ".";
+import { KeywordsBasedDeviceManager } from "./device-managers";
 
 const uuid = hyperid();
 
@@ -72,11 +73,18 @@ const afterLogin = async () => {
     console.log("Use cached sipInfo");
   }
   console.log("deviceId:", store.deviceId);
+
+  const deviceManager = new KeywordsBasedDeviceManager();
+  deviceManager.setPreferredInputDeviceKeyword("MacBook"); // or AirPods, Headphones, etc.
+  deviceManager.setPreferredOutputDeviceKeyword("MacBook"); // or AirPods, Headphones, etc.
+
   const webPhone = new WebPhone({
     sipInfo: sipInfo as SipInfo,
-    instanceId: uuid(), // It may not be the best way to always specify a new instanceId, please read https://github.com/ringcentral/ringcentral-web-phone?tab=readme-ov-file#instanceid
+    instanceId: "a-static-instance-id",
+    // instanceId: uuid(), // It may not be the best way to always specify a new instanceId, please read https://github.com/ringcentral/ringcentral-web-phone?tab=readme-ov-file#instanceid
     debug: true,
     autoAnswer: true,
+    deviceManager,
   });
   store.webPhone = webPhone;
   await webPhone.start();
