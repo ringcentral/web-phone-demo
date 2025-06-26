@@ -3248,10 +3248,10 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-ringcentral-web-phone@^2.1.12:
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/ringcentral-web-phone/-/ringcentral-web-phone-2.1.12.tgz#134ab4e6b82932c56a156fbfefc5b1723605863f"
-  integrity sha512-qRvl+yZRQZiIOJnjAyX5C24/laL9YOInNNaZ/sdgNz6XlyhDiaDlJTBI5zwO8tEM/Os4Qxe7Kr95itB9R0gO4A==
+ringcentral-web-phone@^2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/ringcentral-web-phone/-/ringcentral-web-phone-2.1.13.tgz#ccbb7959e5070f90d036e215c4ebccfc0232922d"
+  integrity sha512-m8CojMypBN5NcCZdpcKc1auwJJdOdiVxhMXvT7bTqvOMCT0xPksz9pwYqI1NNOm0Js+/wN+8eFZVGmbkppFxJA==
   dependencies:
     blueimp-md5 "^2.19.0"
     fast-xml-parser "^5.2.5"
@@ -3407,10 +3407,10 @@ sort-object-keys@^1.1.3:
   resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-1.1.3.tgz#bff833fe85cab147b34742e45863453c1e190b45"
   integrity sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==
 
-sort-package-json@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-3.3.0.tgz#7648b82462fbeac6b3f8ae853697d06226dd9df0"
-  integrity sha512-r7r8W0b9jrAKySkYbe0dp4nbrvlPh0mV8gJ2dRUt1baXV5cLulsQqsWeuMOy8IQV4O7f3uucbC0K6pZA6ncPyQ==
+sort-package-json@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-3.3.1.tgz#c31c0b4cd970b7fde6b1d0197f8b768584e2e65c"
+  integrity sha512-awjhQR2Iy5UN3NuguAK5+RezcEuUg9Ra4O8y2Aj+DlJa7MywyHaipAPf9bu4qqFj0hsYHHoT9sS3aV7Ucu728g==
   dependencies:
     detect-indent "^7.0.1"
     detect-newline "^4.0.1"
