@@ -77,7 +77,7 @@ export class Store {
     });
     const authorizeUriExtension = new AuthorizeUriExtension();
     await rc.installExtension(authorizeUriExtension);
-    const authorizeUri = authorizeUriExtension.buildUri({
+    const authorizeUri = await authorizeUriExtension.buildUri({
       code_challenge_method: "S256",
       redirect_uri: globalThis.location.origin + globalThis.location.pathname +
         "callback.html",
