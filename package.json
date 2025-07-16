@@ -9,19 +9,19 @@
     "serve": "rm -rf .parcel-cache && parcel src/index.html src/callback.html --dist-dir temp --no-hmr"
   },
   "dependencies": {
-    "@rc-ex/authorize-uri": "^1.4.0",
+    "@rc-ex/authorize-uri": "^2.0.0",
     "@rc-ex/core": "^1.7.0",
-    "antd": "^5.26.4",
+    "antd": "^5.26.5",
     "hyperid": "^3.3.0",
     "localforage": "^1.10.0",
     "manate": "^2.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "ringcentral-web-phone": "^2.1.17"
+    "ringcentral-web-phone": "^2.2.0"
   },
   "devDependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.0.14",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "buffer": "^6.0.3",
