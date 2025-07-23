@@ -1288,10 +1288,10 @@
   resolved "https://registry.yarnpkg.com/@types/css-font-loading-module/-/css-font-loading-module-0.0.7.tgz#2f98ede46acc0975de85c0b7b0ebe06041d24601"
   integrity sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==
 
-"@types/node@^24.0.14":
-  version "24.0.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.14.tgz#6e3d4fb6d858c48c69707394e1a0e08ce1ecc1bc"
-  integrity sha512-4zXMWD91vBLGRtHK3YbIoFMia+1nqEz72coM42C5ETjnNCa/heoj7NT1G67iAfOqMmcfhuCZ4uNpyz8EjlAejw==
+"@types/node@^24.1.0":
+  version "24.1.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.1.0.tgz#0993f7dc31ab5cc402d112315b463e383d68a49c"
+  integrity sha512-ut5FthK5moxFKH2T1CUOC6ctR67rQRvvHdFLCD2Ql6KXmMuCrjsSsRI9UsLCm9M18BMwClv4pn327UvB7eeO1w==
   dependencies:
     undici-types "~7.8.0"
 
@@ -1329,10 +1329,10 @@ ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-antd@^5.26.5:
-  version "5.26.5"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-5.26.5.tgz#e324b028753df763b494034634a6dc991a959e95"
-  integrity sha512-HB7Cr0tPZMMeAyDDH8KZU0aP8/uO51oasmflJhDBzaRRZmLT8Pyjtt8qS22Sc839glm8gpKQcaG0mln66Gt9Fg==
+antd@^5.26.6:
+  version "5.26.6"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-5.26.6.tgz#cdfd0aa02e6a9762ef26b4cc6d69f5d1bfbdf372"
+  integrity sha512-k8ipeT+UL2tP/x4jHTXElScAxsD94JgrIEeGHj80nNO4dL9hqcmaOUBpHo3ieCf6MFjhS7gLUthysQeP6e7DUg==
   dependencies:
     "@ant-design/colors" "^7.2.1"
     "@ant-design/cssinjs" "^1.23.0"
@@ -2482,10 +2482,10 @@ mitt@^3.0.0:
   resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
   integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
 
-mixpanel-browser@^2.66.0:
-  version "2.66.0"
-  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.66.0.tgz#17222ee6d216fe070a115bcbe0b251f3cdf245f1"
-  integrity sha512-n02abeEhQCNHnpQlYTYx8EzcZGpNXvmw8ozgbFiTbthMRY65aPXuRat5hCiZXllZ+UY31awszFx/LpryPwie0A==
+mixpanel-browser@^2.67.0:
+  version "2.67.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.67.0.tgz#74ac41eedec4ca3bdc63c22a91271584b17057f0"
+  integrity sha512-LudY4eRIkvjEpAlIAg10i2T2mbtiKZ4XlMGbTyF1kcAhEqMa9JhEEdEcjxYPwiKhuMVSBM3RVkNCZaNqcnE4ww==
   dependencies:
     rrweb "2.0.0-alpha.18"
 
@@ -3249,11 +3249,11 @@ reusify@^1.0.4:
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
 "ringcentral-web-phone@file:../ringcentral-web-phone":
-  version "2.2.0"
+  version "2.2.2"
   dependencies:
     blueimp-md5 "^2.19.0"
     fast-xml-parser "^5.2.5"
-    mixpanel-browser "^2.66.0"
+    mixpanel-browser "^2.67.0"
     sdp-transform "^2.15.0"
     uuid "^11.1.0"
 

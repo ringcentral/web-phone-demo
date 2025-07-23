@@ -11,7 +11,7 @@
   "dependencies": {
     "@rc-ex/authorize-uri": "^2.0.0",
     "@rc-ex/core": "^1.7.0",
-    "antd": "^5.26.5",
+    "antd": "^5.26.6",
     "hyperid": "^3.3.0",
     "localforage": "^1.10.0",
     "manate": "^2.0.0",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@types/node": "^24.0.14",
+    "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "buffer": "^6.0.3",

@@ -94,7 +94,7 @@ const afterLogin = async () => {
       message: OutboundMessage,
       waitForReply = false,
     ): Promise<InboundMessage> {
-      message.headers["Custom-Header"] = "MyCustomHeaderValue";
+      message.headers["Custom-Header"] = "CustomHeaderValue";
       return super.send(message, waitForReply);
     }
   }
