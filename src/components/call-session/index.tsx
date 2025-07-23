@@ -11,8 +11,6 @@ const Session = auto((props: { callSession: CallSession }) => {
   const { callSession } = props;
   return callSession.direction === "inbound"
     ? <InboundSession session={callSession as InboundCallSession} />
-    : callSession.state === "init"
-    ? <>Initiating an outbound call</>
     : <OutboundSession session={callSession as OutboundCallSession} />;
 });
 
