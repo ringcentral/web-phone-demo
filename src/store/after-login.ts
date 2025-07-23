@@ -3,11 +3,18 @@ import type SipInfoResponse from "@rc-ex/core/lib/definitions/SipInfoResponse";
 import hyperid from "hyperid";
 import localforage from "localforage";
 import WebPhone from "ringcentral-web-phone";
-import type { SipInfo } from "ringcentral-web-phone/types";
+import type {
+  SipClientOptions,
+  SipInfo,
+  WebPhoneOptions,
+} from "ringcentral-web-phone/types";
 import waitFor from "wait-for-async";
 
 import store from ".";
 import { KeywordsBasedDeviceManager } from "./device-managers";
+import { DefaultSipClient } from "ringcentral-web-phone/sip-client";
+import OutboundMessage from "ringcentral-web-phone/sip-message/outbound/index";
+import InboundMessage from "ringcentral-web-phone/sip-message/inbound";
 
 const uuid = hyperid();
 
@@ -78,14 +85,31 @@ const afterLogin = async () => {
   deviceManager.setPreferredInputDeviceKeyword("MacBook"); // or AirPods, Headphones, etc.
   deviceManager.setPreferredOutputDeviceKeyword("MacBook"); // or AirPods, Headphones, etc.
 
-  const webPhone = new WebPhone({
+  class MySipClient extends DefaultSipClient {
+    constructor(options: SipClientOptions) {
+      super(options);
+    }
+
+    public send(
+      message: OutboundMessage,
+      waitForReply = false,
+    ): Promise<InboundMessage> {
+      message.headers["Custom-Header"] = "MyCustomHeaderValue";
+      return super.send(message, waitForReply);
+    }
+  }
+
+  const options: WebPhoneOptions = {
     sipInfo: sipInfo as SipInfo,
     instanceId: "a-static-instance-id",
     // instanceId: uuid(), // It may not be the best way to always specify a new instanceId, please read https://github.com/ringcentral/ringcentral-web-phone?tab=readme-ov-file#instanceid
     debug: true,
     autoAnswer: true,
     deviceManager,
-  });
+  };
+  options.sipClient = new MySipClient(options);
+
+  const webPhone = new WebPhone(options);
   store.webPhone = webPhone;
   await webPhone.start();
 
