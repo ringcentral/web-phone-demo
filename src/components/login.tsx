@@ -34,6 +34,7 @@ const Login = auto((props: { store: Store }) => {
           value={store.clientSecret}
         />
       </Form.Item>
+      <Divider></Divider>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" onClick={() => store.authCodeFlow()}>
           Auth Code Flow
