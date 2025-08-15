@@ -157,34 +157,32 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
           Park
         </Button>
       )}
-      {!session.isConference && (
-        <Popover
-          open={dtmfPopoverVisible}
-          onOpenChange={(visible) => setDtmfPopoverVisible(visible)}
-          trigger="click"
-          placement="top"
-          content={
-            <Space direction="vertical">
-              <Input
-                placeholder="123#"
-                value={dtmfString}
-                onChange={(e) => setDtmfString(e.target.value.trim())}
-              />
-              <Button
-                onClick={() => {
-                  session.sendDtmf(dtmfString);
-                  setDtmfString("");
-                  setDtmfPopoverVisible(false);
-                }}
-              >
-                Send
-              </Button>
-            </Space>
-          }
-        >
-          <Button>Send DTMF</Button>
-        </Popover>
-      )}
+      <Popover
+        open={dtmfPopoverVisible}
+        onOpenChange={(visible) => setDtmfPopoverVisible(visible)}
+        trigger="click"
+        placement="top"
+        content={
+          <Space direction="vertical">
+            <Input
+              placeholder="123#"
+              value={dtmfString}
+              onChange={(e) => setDtmfString(e.target.value.trim())}
+            />
+            <Button
+              onClick={() => {
+                session.sendDtmf(dtmfString);
+                setDtmfString("");
+                setDtmfPopoverVisible(false);
+              }}
+            >
+              Send
+            </Button>
+          </Space>
+        }
+      >
+        <Button>Send DTMF</Button>
+      </Popover>
       {!session.isConference &&
         store.webPhone.callSessions.find((s) => s.isConference) && (
         <Button
