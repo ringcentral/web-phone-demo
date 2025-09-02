@@ -26,6 +26,12 @@ const Login = auto((props: { store: Store }) => {
           value={store.clientId}
         />
       </Form.Item>
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Text type="secondary">
+          Note: the demo requires your app to have the following scopes:
+          "VoipCalling" and "ReadAccounts".
+        </Text>
+      </Form.Item>
       <Form.Item label="Client Secret">
         <Input.Password
           onChange={(e) => {
