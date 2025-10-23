@@ -9,12 +9,15 @@ import type {
   WebPhoneOptions,
 } from "ringcentral-web-phone/types";
 import waitFor from "wait-for-async";
+import WebSocketExtension from "@rc-ex/ws";
+import DebugExtension from "@rc-ex/debug";
 
 import store from ".";
 import { KeywordsBasedDeviceManager } from "./device-managers";
 import { DefaultSipClient } from "ringcentral-web-phone/sip-client";
 import OutboundMessage from "ringcentral-web-phone/sip-message/outbound/index";
 import InboundMessage from "ringcentral-web-phone/sip-message/inbound";
+import AccountTelephonySessionsEvent from "@rc-ex/core/lib/definitions/AccountTelephonySessionsEvent";
 
 // const uuid = hyperid();
 
@@ -94,7 +97,7 @@ const afterLogin = async () => {
       message: OutboundMessage,
       waitForReply = false,
     ): Promise<InboundMessage> {
-      message.headers["Custom-Header"] = "CustomHeaderValue";
+      // message.headers["Custom-Header"] = "CustomHeaderValue";
       return super.send(message, waitForReply);
     }
   }
@@ -165,6 +168,41 @@ const afterLogin = async () => {
     webPhone.sipClient.wsc.addEventListener("close", closeListener);
   };
   webPhone.sipClient.wsc.addEventListener("close", closeListener);
+
+  // todo: an experiment which could be removed
+  if (subscribed) {
+    return;
+  }
+  subscribed = true;
+  const wsExtension = new WebSocketExtension();
+  await rc.installExtension(wsExtension);
+  const debugExtension = new DebugExtension({ loggingAction: console.log });
+  await rc.installExtension(debugExtension);
+  await wsExtension.subscribe(
+    ["/restapi/v1.0/account/~/telephony/sessions"],
+    (event: AccountTelephonySessionsEvent) => {
+      const firstParty = event.body?.parties?.[0];
+      if (!firstParty || !event.body?.telephonySessionId) {
+        return;
+      }
+      if (firstParty.extensionId !== "62282928016") { // this is the call queue extension id
+        return;
+      }
+      if (firstParty.status?.code !== "Proceeding") {
+        return;
+      }
+      setTimeout(async () => {
+        console.log("invoking the api");
+        await rc.restapi().account().telephony().sessions(
+          event.body!.telephonySessionId,
+        ).parties(firstParty.id!).pickup().post({
+          deviceId: store.deviceId,
+        });
+      }, 5000);
+    },
+  );
 };
+
+let subscribed = false;
 
 export default afterLogin;

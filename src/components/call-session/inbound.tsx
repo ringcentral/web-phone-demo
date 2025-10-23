@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import type InboundCallSession from "ringcentral-web-phone/call-session/inbound";
 
 import AnsweredSession from "./answered";
+import store from "../../store";
 
 const InboundSession = auto((props: { session: InboundCallSession }) => {
   const { session } = props;
@@ -108,6 +109,9 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
             </Popover>
             <Button onClick={() => session.decline()} danger>
               Decline
+            </Button>
+            <Button onClick={() => store.callControlPickup(session)}>
+              "/pickup"
             </Button>
           </Space>
         )

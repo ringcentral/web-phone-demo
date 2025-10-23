@@ -199,6 +199,21 @@ export class Store {
         to: { phoneNumber: toNumber },
       });
   }
+
+  public async callControlPickup(session: CallSession) {
+    const rc = new RingCentral({ server: this.server });
+    rc.token = { access_token: this.rcToken };
+    await rc
+      .restapi()
+      .account()
+      .telephony()
+      .sessions(session.sessionId)
+      .parties(session.partyId)
+      .pickup()
+      .post({
+        deviceId: this.deviceId,
+      });
+  }
 }
 
 const store = manage(new Store());
