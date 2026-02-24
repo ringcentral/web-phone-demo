@@ -49,7 +49,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
           trigger="click"
           placement="top"
           content={
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Input
                 placeholder="16501234567"
                 value={transferToNumber}
@@ -114,7 +114,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
           trigger="click"
           placement="top"
           content={
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Input
                 placeholder="16501234567"
                 value={flipToNumber}
@@ -164,7 +164,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
         trigger="click"
         placement="top"
         content={
-          <Space direction="vertical">
+          <Space orientation="vertical">
             <Input
               placeholder="123#"
               value={dtmfString}
@@ -201,7 +201,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
           trigger="click"
           placement="top"
           content={
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Input
                 placeholder="16506668888"
                 value={inviteToConfNumber}

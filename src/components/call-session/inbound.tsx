@@ -12,7 +12,7 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
   const [replyPopoverVisible, setReplyPopoverVisible] = useState(false);
   const [replyText, setReplyText] = useState("On my way");
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Space>
         <strong>{session.direction}</strong>
         <span>call from</span>
@@ -33,7 +33,7 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
               trigger="click"
               placement="top"
               content={
-                <Space direction="vertical">
+                <Space orientation="vertical">
                   <Input
                     placeholder="16501234567"
                     value={forwardToNumber}
@@ -63,7 +63,7 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
               trigger="click"
               placement="top"
               content={
-                <Space direction="vertical">
+                <Space orientation="vertical">
                   <Input
                     placeholder="16501234567"
                     value={replyText}

@@ -37,7 +37,7 @@ const Phone = auto((props: { store: Store }) => {
       <Button id="logout-btn" onClick={() => store.logout()}>
         Log out
       </Button>
-      <Space direction="vertical" style={{ display: "flex" }}>
+      <Space orientation="vertical" style={{ display: "flex" }}>
         <Divider>Inbound Call</Divider>
         <Typography.Text>
           Logged in as{" "}
@@ -125,7 +125,7 @@ const Phone = auto((props: { store: Store }) => {
           trigger="click"
           placement="top"
           content={
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Input
                 placeholder="16501234567"
                 value={calloutToNumber}

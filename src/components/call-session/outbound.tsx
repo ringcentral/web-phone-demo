@@ -8,7 +8,7 @@ import AnsweredSession from "./answered";
 const OutboundSession = auto((props: { session: OutboundCallSession }) => {
   const { session } = props;
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Space>
         <strong>{session.direction}</strong>
         <span>call from</span>
