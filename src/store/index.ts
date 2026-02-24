@@ -18,6 +18,7 @@ export class Store {
   public extInfo: GetExtensionInfoResponse;
   public primaryNumber = "";
   public callerIds: string[] = [];
+  public callerId = "";
   public deviceId = "";
 
   public webPhone: WebPhone;

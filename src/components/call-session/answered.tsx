@@ -92,7 +92,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
                     onClick={async () => {
                       const { complete, cancel } = await session.warmTransfer(
                         transferToNumber,
-                        // todo: add callerId argument here, it is defined in phone.tsx
+                        store.callerId || undefined,
                       );
                       setWarmTransferMethods({ complete, cancel });
                     }}

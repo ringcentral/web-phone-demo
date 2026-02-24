@@ -19,15 +19,14 @@ import CallSession from "./call-session";
 const Phone = auto((props: { store: Store }) => {
   const { store } = props;
   const [callee, setCallee] = React.useState<string>("");
-  const [callerId, setCallerId] = React.useState<string>("");
   const [calloutPopoverVisible, setCalloutPopoverVisible] = React.useState(
     false,
   );
   const [calloutToNumber, setCalloutToNumber] = React.useState("");
   useEffect(() => {
     const { start, stop } = autoRun(() => {
-      if (callerId === "" && store.callerIds.length > 0) {
-        setCallerId(store.callerIds[0]);
+      if (store.callerId === "" && store.callerIds.length > 0) {
+        store.callerId = store.callerIds[0];
       }
     });
     start();
@@ -54,8 +53,10 @@ const Phone = auto((props: { store: Store }) => {
           <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
             <Form.Item label="From">
               <Select
-                value={callerId}
-                onChange={(value) => setCallerId(value)}
+                value={store.callerId}
+                onChange={(value) => {
+                  store.callerId = value;
+                }}
                 style={{ width: "10rem" }}
                 options={store.callerIds.map((n) => ({
                   value: n,
@@ -74,7 +75,7 @@ const Phone = auto((props: { store: Store }) => {
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <Button
                 type="primary"
-                onClick={() => store.webPhone.call(callee, callerId)}
+                onClick={() => store.webPhone.call(callee, store.callerId)}
                 disabled={callee.trim().length < 3}
                 block
               >
