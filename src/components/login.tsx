@@ -38,6 +38,7 @@ const Login = auto((props: { store: Store }) => {
             store.clientSecret = e.target.value;
           }}
           value={store.clientSecret}
+          autoComplete="new-password"
         />
       </Form.Item>
       <Divider></Divider>
@@ -60,6 +61,7 @@ const Login = auto((props: { store: Store }) => {
             store.jwtToken = e.target.value;
           }}
           value={store.jwtToken}
+          autoComplete="new-password"
         />
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
