@@ -24,6 +24,7 @@ const Login = auto((props: { store: Store }) => {
             store.clientId = e.target.value;
           }}
           value={store.clientId}
+          autoComplete="username"
         />
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
