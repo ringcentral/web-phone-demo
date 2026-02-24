@@ -1,7 +1,7 @@
 import { Button, Input, Popover, Select, Space } from "antd";
 import { auto } from "manate/react";
 import React, { useEffect, useState } from "react";
-import type CallSession from "ringcentral-web-phone/call-session";
+import type CallSession from "ringcentral-web-phone/call-session/index";
 
 import store from "../../store";
 
@@ -92,6 +92,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
                     onClick={async () => {
                       const { complete, cancel } = await session.warmTransfer(
                         transferToNumber,
+                        // todo: add callerId argument here, it is defined in phone.tsx
                       );
                       setWarmTransferMethods({ complete, cancel });
                     }}
