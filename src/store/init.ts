@@ -9,8 +9,8 @@ const init = async () => {
   // load credentials from local
   store.rcToken = (await localforage.getItem("rcToken")) ?? "";
   store.refreshToken = (await localforage.getItem("refreshToken")) ?? "";
-  store.server = (await localforage.getItem("server")) ??
-    "https://platform.ringcentral.com";
+  store.server =
+    (await localforage.getItem("server")) ?? "https://platform.ringcentral.com";
   store.clientId = (await localforage.getItem("clientId")) ?? "";
   store.clientSecret = (await localforage.getItem("clientSecret")) ?? "";
   store.jwtToken = (await localforage.getItem("jwtToken")) ?? "";

@@ -1,6 +1,6 @@
 import { Button, Input, Popover, Select, Space } from "antd";
 import { auto } from "manate/react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type CallSession from "ringcentral-web-phone/call-session/index";
 
 import store from "../../store";
@@ -13,9 +13,8 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
   const [flipToNumber, setFlipToNumber] = useState("");
   const [dtmfPopoverVisible, setDtmfPopoverVisible] = useState(false);
   const [dtmfString, setDtmfString] = useState("");
-  const [inviteToConfPopoverVisible, setInviteToConfPopoverVisible] = useState(
-    false,
-  );
+  const [inviteToConfPopoverVisible, setInviteToConfPopoverVisible] =
+    useState(false);
   const [inviteToConfNumber, setInviteToConfNumber] = useState("");
   const [warmTransferMethods, setWarmTransferMethods] = useState<
     undefined | { complete: () => void; cancel: () => void }
@@ -28,7 +27,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
       const newDevices = await navigator.mediaDevices.enumerateDevices();
       if (
         newDevices.map((d) => d.deviceId).join("|") !==
-          devices.map((d) => d.deviceId).join("|")
+        devices.map((d) => d.deviceId).join("|")
       ) {
         setDevices(newDevices);
       }
@@ -186,14 +185,14 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
       </Popover>
       {!session.isConference &&
         store.webPhone.callSessions.find((s) => s.isConference) && (
-        <Button
-          onClick={() => {
-            store.mergeToConference(session);
-          }}
-        >
-          Merge to Conference
-        </Button>
-      )}
+          <Button
+            onClick={() => {
+              store.mergeToConference(session);
+            }}
+          >
+            Merge to Conference
+          </Button>
+        )}
       {session.isConference && (
         <Popover
           open={inviteToConfPopoverVisible}

@@ -28,7 +28,7 @@ const generatedLines = [
 for (const packageName of dependencyPackages) {
   const version = getInstalledPackageVersion(packageName);
   const constName = toConstName(packageName);
-  generatedLines.push(`export const ${constName} = \"${version}\";`);
+  generatedLines.push(`export const ${constName} = "${version}";`);
 }
 
 generatedLines.push("");

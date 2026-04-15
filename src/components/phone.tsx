@@ -19,9 +19,8 @@ import CallSession from "./call-session";
 const Phone = auto((props: { store: Store }) => {
   const { store } = props;
   const [callee, setCallee] = React.useState<string>("");
-  const [calloutPopoverVisible, setCalloutPopoverVisible] = React.useState(
-    false,
-  );
+  const [calloutPopoverVisible, setCalloutPopoverVisible] =
+    React.useState(false);
   const [calloutToNumber, setCalloutToNumber] = React.useState("");
   useEffect(() => {
     const { start, stop } = autoRun(() => {
@@ -31,7 +30,7 @@ const Phone = auto((props: { store: Store }) => {
     });
     start();
     return () => stop();
-  }, []);
+  }, [store.callerIds[0], store.callerId, store]);
   return (
     <>
       <Button id="logout-btn" onClick={() => store.logout()}>
@@ -45,8 +44,8 @@ const Phone = auto((props: { store: Store }) => {
             {store.extInfo?.contact?.firstName}{" "}
             {store.extInfo?.contact?.lastName}
           </strong>
-          . You may dial <strong>{store.primaryNumber}</strong>{" "}
-          to reach this web phone.
+          . You may dial <strong>{store.primaryNumber}</strong> to reach this
+          web phone.
         </Typography.Text>
         <Divider>Outbound Call</Divider>
         <Space>
@@ -114,6 +113,7 @@ const Phone = auto((props: { store: Store }) => {
           <a
             href="https://developers.ringcentral.com/api-reference/Call-Control/createCallOutCallSession"
             target="_blank"
+            rel="noopener"
           >
             Call Control API
           </a>{" "}
@@ -144,6 +144,7 @@ const Phone = auto((props: { store: Store }) => {
               <a
                 href="https://developers.ringcentral.com/api-reference/Call-Control/createCallOutCallSession"
                 target="_blank"
+                rel="noopener"
               >
                 Documentation
               </a>

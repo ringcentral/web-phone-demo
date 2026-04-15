@@ -1,6 +1,5 @@
 import { notification, Typography } from "antd";
 import { auto } from "manate/react";
-import React from "react";
 
 import { RINGCENTRAL_WEB_PHONE_VERSION } from "../generated/versions";
 import type { Store } from "../store";

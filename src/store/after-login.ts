@@ -3,18 +3,13 @@ import type SipInfoResponse from "@rc-ex/core/lib/definitions/SipInfoResponse";
 // import hyperid from "hyperid";
 import localforage from "localforage";
 import WebPhone from "ringcentral-web-phone";
-import type {
-  SipClientOptions,
-  SipInfo,
-  WebPhoneOptions,
-} from "ringcentral-web-phone/types";
+import { DefaultSipClient } from "ringcentral-web-phone/sip-client";
+import type InboundMessage from "ringcentral-web-phone/sip-message/inbound";
+import type OutboundMessage from "ringcentral-web-phone/sip-message/outbound/index";
+import type { SipInfo, WebPhoneOptions } from "ringcentral-web-phone/types";
 import waitFor from "wait-for-async";
-
 import store from ".";
 import { KeywordsBasedDeviceManager } from "./device-managers";
-import { DefaultSipClient } from "ringcentral-web-phone/sip-client";
-import OutboundMessage from "ringcentral-web-phone/sip-message/outbound/index";
-import InboundMessage from "ringcentral-web-phone/sip-message/inbound";
 
 // const uuid = hyperid();
 
@@ -72,7 +67,7 @@ const afterLogin = async () => {
       .post({
         sipInfo: [{ transport: "WSS" }],
       });
-    sipInfo = r.sipInfo![0];
+    sipInfo = r.sipInfo?.[0];
     store.deviceId = r.device!.id!;
     await localforage.setItem(`${cacheKey}-sipInfo`, sipInfo);
     await localforage.setItem(`${cacheKey}-deviceId`, store.deviceId);
@@ -86,10 +81,6 @@ const afterLogin = async () => {
   deviceManager.setPreferredOutputDeviceKeyword("MacBook"); // or AirPods, Headphones, etc.
 
   class MySipClient extends DefaultSipClient {
-    constructor(options: SipClientOptions) {
-      super(options);
-    }
-
     public send(
       message: OutboundMessage,
       waitForReply = false,

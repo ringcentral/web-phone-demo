@@ -1,6 +1,5 @@
 import { Button, Divider, Form, Input, Typography } from "antd";
 import { auto } from "manate/react";
-import React from "react";
 
 import type { Store } from "../store";
 

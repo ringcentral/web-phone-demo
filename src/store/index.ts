@@ -64,10 +64,7 @@ export class Store {
   }
 
   public async authCodeFlow() {
-    if (
-      this.server === "" ||
-      this.clientId === ""
-    ) {
+    if (this.server === "" || this.clientId === "") {
       message.error("Please input server and client ID");
       return;
     }
@@ -80,7 +77,9 @@ export class Store {
     await rc.installExtension(authorizeUriExtension);
     const authorizeUri = await authorizeUriExtension.buildUri({
       code_challenge_method: "S256",
-      redirect_uri: globalThis.location.origin + globalThis.location.pathname +
+      redirect_uri:
+        globalThis.location.origin +
+        globalThis.location.pathname +
         "callback.html",
     });
     globalThis.open(
@@ -94,7 +93,8 @@ export class Store {
       if (event.data.source === "oauth-callback") {
         const token = await rc.authorize({
           code: event.data.code,
-          redirect_uri: globalThis.location.origin +
+          redirect_uri:
+            globalThis.location.origin +
             globalThis.location.pathname +
             "callback.html",
           code_verifier: authorizeUriExtension.codeVerifier,
@@ -195,7 +195,8 @@ export class Store {
       .restapi()
       .account()
       .telephony()
-      .callOut().post({
+      .callOut()
+      .post({
         from: { deviceId: this.deviceId },
         to: { phoneNumber: toNumber },
       });
