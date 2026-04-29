@@ -14,16 +14,16 @@
   "dependencies": {
     "@rc-ex/authorize-uri": "^2.1.0",
     "@rc-ex/core": "^1.8.0",
-    "antd": "^6.3.5",
-    "hyperid": "^3.3.0",
+    "antd": "^6.3.7",
+    "hyperid": "^4.0.0",
     "localforage": "^1.10.0",
     "manate": "^2.0.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "ringcentral-web-phone": "^2.4.1"
+    "ringcentral-web-phone": "^2.4.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.12",
+    "@biomejs/biome": "^2.4.13",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -38,10 +38,10 @@
     "svgo": "^4.0.1",
     "timers-browserify": "^2.0.12",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2",
+    "typescript": "^6.0.3",
     "vm-browserify": "^1.1.2",
-    "wait-for-async": "^0.8.0",
-    "yarn-upgrade-all": "^0.7.5"
+    "wait-for-async": "^0.8.1",
+    "yarn-upgrade-all": "^0.8.1"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "@parcel/resolver-default": {
