@@ -1,5 +1,6 @@
 import RingCentral from "@rc-ex/core";
 import type SipInfoResponse from "@rc-ex/core/lib/definitions/SipInfoResponse";
+import { message } from "antd";
 // import hyperid from "hyperid";
 import localforage from "localforage";
 import WebPhone from "ringcentral-web-phone";
@@ -107,10 +108,10 @@ const afterLogin = async () => {
 
   // display a message when outbound call failed:
   webPhone.on("outboundCall", (callSession) => {
-    callSession.once("failed", (message: string) => {
-      globalThis.notifier.error({
-        message: "Outbound call failed",
-        description: message,
+    callSession.once("failed", (errorMessage: string) => {
+      message.open({
+        type: "error",
+        content: `Outbound call failed: ${errorMessage}`,
         duration: 10,
       });
     });

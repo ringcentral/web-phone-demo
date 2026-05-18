@@ -1,4 +1,4 @@
-import { Button, Input, Popover, Select, Space } from "antd";
+import { Button, Input, message, Popover, Select, Space } from "antd";
 import { auto } from "manate/react";
 import { useEffect, useState } from "react";
 import type CallSession from "ringcentral-web-phone/call-session/index";
@@ -147,9 +147,14 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
         <Button
           onClick={async () => {
             const result = await session.park();
-            globalThis.notifier.info({
-              message: "Call Park Result",
-              description: <pre>{JSON.stringify(result, null, 2)}</pre>,
+            message.open({
+              type: "info",
+              content: (
+                <Space orientation="vertical">
+                  <strong>Call Park Result</strong>
+                  <pre>{JSON.stringify(result, null, 2)}</pre>
+                </Space>
+              ),
               duration: 10,
             });
           }}

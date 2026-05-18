@@ -1,4 +1,4 @@
-import { Button, Input, Popover, Space, Tag } from "antd";
+import { Button, Input, message, Popover, Space, Tag } from "antd";
 import { auto } from "manate/react";
 import { useState } from "react";
 import type InboundCallSession from "ringcentral-web-phone/call-session/inbound";
@@ -73,7 +73,7 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
                     setReplyPopoverVisible(false);
                     const response = await session.reply(replyText);
                     if (response.body.Sts === "0") {
-                      const message = `${response.body.Phn} ${response.body.Nm}`;
+                      const replyMessage = `${response.body.Phn} ${response.body.Nm}`;
                       let description = "";
                       switch (response.body.Resp) {
                         case "1":
@@ -88,9 +88,14 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
                         default:
                           break;
                       }
-                      globalThis.notifier.info({
-                        message, // who replied
-                        description, // what replied
+                      message.open({
+                        type: "info",
+                        content: (
+                          <Space orientation="vertical">
+                            <strong>{replyMessage}</strong>
+                            <span>{description}</span>
+                          </Space>
+                        ),
                         duration: 0,
                       });
                     }
