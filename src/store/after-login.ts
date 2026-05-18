@@ -67,7 +67,7 @@ const afterLogin = async () => {
       .post({
         sipInfo: [{ transport: "WSS" }],
       });
-    sipInfo = r.sipInfo?.[0];
+    sipInfo = r.sipInfo![0];
     store.deviceId = r.device!.id!;
     await localforage.setItem(`${cacheKey}-sipInfo`, sipInfo);
     await localforage.setItem(`${cacheKey}-deviceId`, store.deviceId);
