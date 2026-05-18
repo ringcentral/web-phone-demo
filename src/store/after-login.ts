@@ -103,10 +103,11 @@ const afterLogin = async () => {
   const webPhone = new WebPhone(options);
   store.webPhone = webPhone;
   await webPhone.start();
+  const sipClient = webPhone.sipClient as MySipClient;
 
   // display a message when outbound call failed:
   webPhone.on("outboundCall", (callSession) => {
-    callSession.once("failed", (message) => {
+    callSession.once("failed", (message: string) => {
       globalThis.notifier.error({
         message: "Outbound call failed",
         description: message,
@@ -131,8 +132,8 @@ const afterLogin = async () => {
   });
 
   // handle network issues
-  const closeListener = async (e) => {
-    webPhone.sipClient.wsc.removeEventListener("close", closeListener);
+  const closeListener = async (e: Event) => {
+    sipClient.wsc.removeEventListener("close", closeListener);
     if (webPhone.disposed) {
       // webPhone.dispose() has been called, no need to reconnect
       return;
@@ -153,9 +154,9 @@ const afterLogin = async () => {
       }
     }
     // because webPhone.start() will create a new webPhone.sipClient.wsc
-    webPhone.sipClient.wsc.addEventListener("close", closeListener);
+    sipClient.wsc.addEventListener("close", closeListener);
   };
-  webPhone.sipClient.wsc.addEventListener("close", closeListener);
+  sipClient.wsc.addEventListener("close", closeListener);
 };
 
 export default afterLogin;
