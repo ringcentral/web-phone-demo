@@ -1,6 +1,6 @@
 import AuthorizeUriExtension from "@rc-ex/authorize-uri";
 import RingCentral from "@rc-ex/core";
-import type GetExtensionInfoResponse from "@rc-ex/core/lib/definitions/GetExtensionInfoResponse";
+import type GetExtensionInfoResponse from "@rc-ex/core/definitions/GetExtensionInfoResponse";
 import { message } from "antd";
 import { manage } from "manate";
 import type WebPhone from "ringcentral-web-phone";

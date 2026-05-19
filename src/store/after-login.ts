@@ -1,5 +1,5 @@
 import RingCentral from "@rc-ex/core";
-import type SipInfoResponse from "@rc-ex/core/lib/definitions/SipInfoResponse";
+import type SipInfoResponse from "@rc-ex/core/definitions/SipInfoResponse";
 import { message } from "antd";
 // import hyperid from "hyperid";
 import localforage from "localforage";
