@@ -91,7 +91,7 @@ const AnsweredSession = auto((props: { session: CallSession }) => {
                     onClick={async () => {
                       const { complete, cancel } = await session.warmTransfer(
                         transferToNumber,
-                        store.callerId || undefined,
+                        { callerId: store.callerId || undefined },
                       );
                       setWarmTransferMethods({ complete, cancel });
                     }}

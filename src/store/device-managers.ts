@@ -21,7 +21,7 @@ export class KeywordsBasedDeviceManager implements DeviceManager {
     if (!preferredDevice && audioDevices.length > 0) {
       preferredDevice = audioDevices[0];
     }
-    return preferredDevice?.deviceId;
+    return preferredDevice!.deviceId;
   }
 
   public async getOutputDeviceId(): Promise<string | undefined> {
