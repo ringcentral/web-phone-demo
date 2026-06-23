@@ -33,6 +33,7 @@ const Login = auto((props: { store: Store }) => {
         </Text>
       </Form.Item>
       <Tabs
+        centered
         items={[
           {
             key: "auth-code",
