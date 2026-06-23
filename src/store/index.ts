@@ -71,7 +71,6 @@ export class Store {
     const rc = new RingCentral({
       server: this.server,
       clientId: this.clientId,
-      clientSecret: this.clientSecret,
     });
     const authorizeUriExtension = new AuthorizeUriExtension();
     await rc.installExtension(authorizeUriExtension);

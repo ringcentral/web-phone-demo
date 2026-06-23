@@ -1,4 +1,4 @@
-import { Button, Divider, Form, Input, Typography } from "antd";
+import { Button, Form, Input, Tabs, Typography } from "antd";
 import { auto } from "manate/react";
 
 import type { Store } from "../store";
@@ -32,43 +32,61 @@ const Login = auto((props: { store: Store }) => {
           "VoipCalling" and "ReadAccounts".
         </Text>
       </Form.Item>
-      <Divider></Divider>
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" onClick={() => store.authCodeFlow()}>
-          Auth Code Flow
-        </Button>
-      </Form.Item>
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Text type="secondary">
-          Note: Set redirect URI to{" "}
-          {globalThis.location.origin + globalThis.location.pathname}
-          callback.html
-        </Text>
-      </Form.Item>
-      <Divider>OR</Divider>
-      <Form.Item label="Client Secret" required>
-        <Input.Password
-          onChange={(e) => {
-            store.clientSecret = e.target.value;
-          }}
-          value={store.clientSecret}
-          autoComplete="new-password"
-        />
-      </Form.Item>
-      <Form.Item label="JWT Token" required>
-        <Input.Password
-          onChange={(e) => {
-            store.jwtToken = e.target.value;
-          }}
-          value={store.jwtToken}
-          autoComplete="new-password"
-        />
-      </Form.Item>
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" onClick={() => store.jwtFlow()}>
-          Personal JWT Flow
-        </Button>
-      </Form.Item>
+      <Tabs
+        items={[
+          {
+            key: "auth-code",
+            label: "Auth Code Flow",
+            children: (
+              <>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                  <Text type="secondary">
+                    Note: Set redirect URI to{" "}
+                    {globalThis.location.origin + globalThis.location.pathname}
+                    callback.html
+                  </Text>
+                </Form.Item>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                  <Button type="primary" onClick={() => store.authCodeFlow()}>
+                    Auth Code Flow
+                  </Button>
+                </Form.Item>
+              </>
+            ),
+          },
+          {
+            key: "personal-jwt",
+            label: "Personal JWT Flow",
+            children: (
+              <>
+                <Form.Item label="Client Secret" required>
+                  <Input.Password
+                    onChange={(e) => {
+                      store.clientSecret = e.target.value;
+                    }}
+                    value={store.clientSecret}
+                    autoComplete="new-password"
+                  />
+                </Form.Item>
+                <Form.Item label="JWT Token" required>
+                  <Input.Password
+                    onChange={(e) => {
+                      store.jwtToken = e.target.value;
+                    }}
+                    value={store.jwtToken}
+                    autoComplete="new-password"
+                  />
+                </Form.Item>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                  <Button type="primary" onClick={() => store.jwtFlow()}>
+                    Personal JWT Flow
+                  </Button>
+                </Form.Item>
+              </>
+            ),
+          },
+        ]}
+      />
     </Form>
   );
 });
