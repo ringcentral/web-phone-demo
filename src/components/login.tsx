@@ -32,15 +32,6 @@ const Login = auto((props: { store: Store }) => {
           "VoipCalling" and "ReadAccounts".
         </Text>
       </Form.Item>
-      <Form.Item label="Client Secret">
-        <Input.Password
-          onChange={(e) => {
-            store.clientSecret = e.target.value;
-          }}
-          value={store.clientSecret}
-          autoComplete="new-password"
-        />
-      </Form.Item>
       <Divider></Divider>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" onClick={() => store.authCodeFlow()}>
@@ -55,6 +46,15 @@ const Login = auto((props: { store: Store }) => {
         </Text>
       </Form.Item>
       <Divider>OR</Divider>
+      <Form.Item label="Client Secret" required>
+        <Input.Password
+          onChange={(e) => {
+            store.clientSecret = e.target.value;
+          }}
+          value={store.clientSecret}
+          autoComplete="new-password"
+        />
+      </Form.Item>
       <Form.Item label="JWT Token" required>
         <Input.Password
           onChange={(e) => {
