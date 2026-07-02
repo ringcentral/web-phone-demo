@@ -13,6 +13,7 @@ export class Store {
   public refreshToken = "";
   public server = "https://platform.ringcentral.com";
   public clientId = "";
+  public deviceSerial = "";
   public clientSecret = "";
   public jwtToken = "";
   public extInfo: GetExtensionInfoResponse;
@@ -54,7 +55,11 @@ export class Store {
       clientSecret: this.clientSecret,
     });
     try {
-      const token = await rc.authorize({ jwt: this.jwtToken });
+      const token = await rc.getToken({
+        grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+        assertion: this.jwtToken,
+        ...(this.deviceSerial === "" ? {} : { endpoint_id: this.deviceSerial }),
+      });
       this.rcToken = token.access_token!;
       this.refreshToken = token.refresh_token!;
       afterLogin();
@@ -90,13 +95,17 @@ export class Store {
     )!;
     globalThis.addEventListener("message", async (event) => {
       if (event.data.source === "oauth-callback") {
-        const token = await rc.authorize({
+        const token = await rc.getToken({
+          grant_type: "authorization_code",
           code: event.data.code,
           redirect_uri:
             globalThis.location.origin +
             globalThis.location.pathname +
             "callback.html",
           code_verifier: authorizeUriExtension.codeVerifier,
+          ...(this.deviceSerial === ""
+            ? {}
+            : { endpoint_id: this.deviceSerial }),
         });
         this.rcToken = token.access_token!;
         this.refreshToken = token.refresh_token!;
@@ -199,6 +208,15 @@ export class Store {
         from: { deviceId: this.deviceId },
         to: { phoneNumber: toNumber },
       });
+  }
+
+  public async webappDevices() {
+    const rc = new RingCentral({ server: this.server });
+    rc.token = { access_token: this.rcToken };
+    const r = await rc.get<string>(
+      "/restapi/v1.0/account/~/extension/~/webapp-devices",
+    );
+    console.log(JSON.stringify(r, null, 2));
   }
 }
 

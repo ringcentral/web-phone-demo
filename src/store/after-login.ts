@@ -53,7 +53,7 @@ const afterLogin = async () => {
   ];
 
   // create and initialize a web phone
-  const cacheKey = `rc-${store.extInfo.id}`;
+  const cacheKey = `rc-${store.extInfo.id}-${store.deviceSerial}`;
   let sipInfo = await localforage.getItem<SipInfoResponse>(
     `${cacheKey}-sipInfo`,
   );
