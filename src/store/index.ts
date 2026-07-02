@@ -55,11 +55,10 @@ export class Store {
       clientSecret: this.clientSecret,
     });
     try {
-      const token = await rc.getToken({
-        grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-        assertion: this.jwtToken,
-        ...(this.deviceSerial === "" ? {} : { endpoint_id: this.deviceSerial }),
-      });
+      const token = await rc.authorize(
+        { jwt: this.jwtToken },
+        this.deviceSerial === "" ? {} : { endpoint_id: this.deviceSerial },
+      );
       this.rcToken = token.access_token!;
       this.refreshToken = token.refresh_token!;
       afterLogin();
@@ -92,21 +91,20 @@ export class Store {
       `width=600,height=600,left=${globalThis.screenX + 256},top=${
         globalThis.screenY + 128
       }`,
-    )!;
+    );
     globalThis.addEventListener("message", async (event) => {
       if (event.data.source === "oauth-callback") {
-        const token = await rc.getToken({
-          grant_type: "authorization_code",
-          code: event.data.code,
-          redirect_uri:
-            globalThis.location.origin +
-            globalThis.location.pathname +
-            "callback.html",
-          code_verifier: authorizeUriExtension.codeVerifier,
-          ...(this.deviceSerial === ""
-            ? {}
-            : { endpoint_id: this.deviceSerial }),
-        });
+        const token = await rc.authorize(
+          {
+            code: event.data.code,
+            redirect_uri:
+              globalThis.location.origin +
+              globalThis.location.pathname +
+              "callback.html",
+            code_verifier: authorizeUriExtension.codeVerifier,
+          },
+          this.deviceSerial === "" ? {} : { endpoint_id: this.deviceSerial },
+        );
         this.rcToken = token.access_token!;
         this.refreshToken = token.refresh_token!;
         afterLogin();
