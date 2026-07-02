@@ -12,6 +12,7 @@ const init = async () => {
   store.server =
     (await localforage.getItem("server")) ?? "https://platform.ringcentral.com";
   store.clientId = (await localforage.getItem("clientId")) ?? "";
+  store.deviceSerial = (await localforage.getItem("deviceSerial")) ?? "";
   store.clientSecret = (await localforage.getItem("clientSecret")) ?? "";
   store.jwtToken = (await localforage.getItem("jwtToken")) ?? "";
 
@@ -21,6 +22,7 @@ const init = async () => {
     localforage.setItem("refreshToken", store.refreshToken);
     localforage.setItem("server", store.server);
     localforage.setItem("clientId", store.clientId);
+    localforage.setItem("deviceSerial", store.deviceSerial);
     localforage.setItem("clientSecret", store.clientSecret);
     localforage.setItem("jwtToken", store.jwtToken);
   });

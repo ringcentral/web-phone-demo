@@ -26,6 +26,14 @@ const Login = auto((props: { store: Store }) => {
           autoComplete="username"
         />
       </Form.Item>
+      <Form.Item label="Device Serial">
+        <Input
+          onChange={(e) => {
+            store.deviceSerial = e.target.value;
+          }}
+          value={store.deviceSerial}
+        />
+      </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Text type="secondary">
           Note: the demo requires your app to have the following scopes:
