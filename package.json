@@ -7,9 +7,9 @@
   "scripts": {
     "generate:versions": "node scripts/generate-versions.js",
     "lint": "biome check --write src scripts package.json biome.json",
-    "release": "yarn generate:versions && rm -rf .parcel-cache && parcel build src/index.html src/callback.html --dist-dir docs --public-url ./ && gh-pages -d docs && rm -rf docs",
-    "serve": "yarn generate:versions && rm -rf .parcel-cache && parcel src/index.html src/callback.html --dist-dir temp --no-hmr",
-    "postinstall": "yarn generate:versions"
+    "release": "pnpm generate:versions && rm -rf .parcel-cache && parcel build src/index.html src/callback.html --dist-dir docs --public-url ./ && gh-pages -d docs && rm -rf docs",
+    "serve": "pnpm generate:versions && rm -rf .parcel-cache && parcel src/index.html src/callback.html --dist-dir temp --no-hmr",
+    "postinstall": "pnpm generate:versions"
   },
   "dependencies": {
     "@rc-ex/authorize-uri": "^2.1.1",
@@ -40,10 +40,9 @@
     "tsx": "^4.22.5",
     "typescript": "^6.0.3",
     "vm-browserify": "^1.1.2",
-    "wait-for-async": "^0.8.1",
-    "yarn-upgrade-all": "^0.8.1"
+    "wait-for-async": "^0.8.1"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "packageManager": "pnpm@10.34.4",
   "@parcel/resolver-default": {
     "packageExports": true
   }
