@@ -17,7 +17,11 @@ const Login = auto((props: { store: Store }) => {
           value={store.server}
         />
       </Form.Item>
-      <Form.Item label="Client ID" required>
+      <Form.Item
+        label="Client ID"
+        required
+        extra="Required scopes: VoipCalling and ReadAccounts."
+      >
         <Input
           onChange={(e) => {
             store.clientId = e.target.value;
@@ -26,19 +30,16 @@ const Login = auto((props: { store: Store }) => {
           autoComplete="username"
         />
       </Form.Item>
-      <Form.Item label="Device Serial">
+      <Form.Item
+        label="Device Serial"
+        extra="Optional beta feature. Leave blank unless instructed."
+      >
         <Input
           onChange={(e) => {
             store.deviceSerial = e.target.value;
           }}
           value={store.deviceSerial}
         />
-      </Form.Item>
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Text type="secondary">
-          Note: the demo requires your app to have the following scopes:
-          "VoipCalling" and "ReadAccounts".
-        </Text>
       </Form.Item>
       <Tabs
         centered
