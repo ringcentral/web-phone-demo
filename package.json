@@ -9,7 +9,8 @@
     "lint": "biome check --write src scripts package.json biome.json",
     "release": "pnpm generate:versions && vite build && gh-pages -d docs && rm -rf docs",
     "serve": "pnpm generate:versions && vite",
-    "postinstall": "pnpm generate:versions"
+    "postinstall": "pnpm generate:versions",
+    "test": "vitest run"
   },
   "dependencies": {
     "@rc-ex/authorize-uri": "^2.1.1",
@@ -29,6 +30,7 @@
     "gh-pages": "^6.3.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.2",
+    "vitest": "^4.1.11",
     "wait-for-async": "^0.8.1"
   },
   "packageManager": "pnpm@10.34.4"
