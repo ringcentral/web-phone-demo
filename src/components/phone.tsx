@@ -12,7 +12,7 @@ import {
 import { autoRun } from "manate";
 import { auto } from "manate/react";
 import React, { useEffect } from "react";
-
+import { canSubmitOutboundCall } from "../outbound-call-policy";
 import type { Store } from "../store";
 import CallSession from "./call-session";
 
@@ -72,14 +72,24 @@ const Phone = auto((props: { store: Store }) => {
               />
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button
-                type="primary"
-                onClick={() => store.webPhone.call(callee, store.callerId)}
-                disabled={callee.trim().length < 3}
-                block
-              >
-                Call
-              </Button>
+              <Space orientation="vertical" style={{ width: "100%" }}>
+                <Button
+                  type="primary"
+                  onClick={() => store.webPhone.call(callee, store.callerId)}
+                  disabled={
+                    !canSubmitOutboundCall(store.outboundCapability, callee)
+                  }
+                  block
+                >
+                  Call
+                </Button>
+                {store.outboundCapability === "disabled" && (
+                  <Typography.Text type="warning">
+                    The current extension has no Digital Line; outbound calling
+                    is disabled.
+                  </Typography.Text>
+                )}
+              </Space>
             </Form.Item>
           </Form>
         </Space>

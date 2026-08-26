@@ -5,6 +5,7 @@ import { message } from "antd";
 import { manage } from "manate";
 import type WebPhone from "ringcentral-web-phone";
 import type CallSession from "ringcentral-web-phone/call-session/index";
+import type { OutboundCapability } from "../outbound-call-policy";
 
 import afterLogin from "./after-login";
 
@@ -21,6 +22,8 @@ export class Store {
   public callerIds: string[] = [];
   public callerId = "";
   public deviceId = "";
+
+  public outboundCapability: OutboundCapability = "loading";
 
   public webPhone: WebPhone;
 

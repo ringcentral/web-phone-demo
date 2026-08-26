@@ -8,6 +8,8 @@ import type InboundMessage from "ringcentral-web-phone/sip-message/inbound";
 import type OutboundMessage from "ringcentral-web-phone/sip-message/outbound/index";
 import type { SipInfo, WebPhoneOptions } from "ringcentral-web-phone/types";
 import waitFor from "wait-for-async";
+import type { OutboundCapability } from "../outbound-call-policy";
+import { resolveOutboundCapability } from "../outbound-call-policy";
 import store from ".";
 import { KeywordsBasedDeviceManager } from "./device-managers";
 
@@ -56,7 +58,10 @@ const afterLogin = async () => {
   );
   store.deviceId =
     (await localforage.getItem<string>(`${cacheKey}-deviceId`)) ?? "";
-  if (sipInfo === null) {
+  const cachedCapability = await localforage.getItem<
+    Exclude<OutboundCapability, "loading">
+  >(`${cacheKey}-outboundCapability`);
+  if (sipInfo === null || cachedCapability === null) {
     console.log("Genereate new sipInfo");
     const r = await rc
       .restapi()
@@ -67,10 +72,18 @@ const afterLogin = async () => {
       });
     sipInfo = r.sipInfo![0];
     store.deviceId = r.device!.id!;
+    store.outboundCapability = resolveOutboundCapability(
+      r.sipFlags?.outboundCallsEnabled,
+    );
     await localforage.setItem(`${cacheKey}-sipInfo`, sipInfo);
     await localforage.setItem(`${cacheKey}-deviceId`, store.deviceId);
+    await localforage.setItem(
+      `${cacheKey}-outboundCapability`,
+      store.outboundCapability,
+    );
   } else {
     console.log("Use cached sipInfo");
+    store.outboundCapability = cachedCapability;
   }
   console.log("deviceId:", store.deviceId);
 
