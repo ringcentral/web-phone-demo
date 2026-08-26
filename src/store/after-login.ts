@@ -1,7 +1,6 @@
 import RingCentral from "@rc-ex/core";
 import type SipInfoResponse from "@rc-ex/core/definitions/SipInfoResponse";
 import { message } from "antd";
-// import hyperid from "hyperid";
 import localforage from "localforage";
 import WebPhone from "ringcentral-web-phone";
 import { DefaultSipClient } from "ringcentral-web-phone/sip-client";
@@ -11,8 +10,6 @@ import type { SipInfo, WebPhoneOptions } from "ringcentral-web-phone/types";
 import waitFor from "wait-for-async";
 import store from ".";
 import { KeywordsBasedDeviceManager } from "./device-managers";
-
-// const uuid = hyperid();
 
 // local utility function
 const trimPrefix = (s: string, prefix: string): string => {
