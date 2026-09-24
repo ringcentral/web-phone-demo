@@ -14,23 +14,23 @@
   },
   "dependencies": {
     "@rc-ex/authorize-uri": "^2.1.1",
-    "@rc-ex/core": "^1.8.3",
-    "antd": "^6.6.1",
+    "@rc-ex/core": "^1.8.6",
+    "antd": "^6.6.5",
     "localforage": "^1.10.0",
     "manate": "^2.0.3",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "ringcentral-web-phone": "^2.5.3"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "ringcentral-web-phone": "^2.6.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.9",
-    "@types/node": "^26.2.0",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
+    "@biomejs/biome": "^2.5.14",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "gh-pages": "^6.3.0",
     "typescript": "^7.0.2",
-    "vite": "^8.2.2",
-    "vitest": "^4.1.11",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.1",
     "wait-for-async": "^0.8.1"
   },
   "packageManager": "pnpm@10.34.4"
