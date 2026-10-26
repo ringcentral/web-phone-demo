@@ -98,7 +98,7 @@ const Phone = auto((props: { store: Store }) => {
           <>
             {store.webPhone.callSessions.map((callSession) => (
               <div key={callSession.callId}>
-                <CallSession callSession={callSession} />
+                <CallSession callSession={callSession} store={store} />
               </div>
             ))}
             {store.webPhone.callSessions.length === 0 && (

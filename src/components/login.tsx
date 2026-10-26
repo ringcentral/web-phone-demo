@@ -20,7 +20,7 @@ const Login = auto((props: { store: Store }) => {
       <Form.Item
         label="Client ID"
         required
-        extra="Required scopes: VoipCalling and ReadAccounts."
+        extra="Required scopes: VoipCalling and ReadAccounts. Add CallControl for optional Call Control API demonstrations."
       >
         <Input
           onChange={(e) => {

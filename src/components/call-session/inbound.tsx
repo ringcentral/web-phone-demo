@@ -1,12 +1,16 @@
-import { Button, Input, message, Popover, Space, Tag } from "antd";
+import { Button, Input, message, Popover, Space, Tag, Tooltip } from "antd";
 import { auto } from "manate/react";
 import { useState } from "react";
 import type InboundCallSession from "ringcentral-web-phone/call-session/inbound";
 
+import type { Store } from "../../store";
+
 import AnsweredSession from "./answered";
 
-const InboundSession = auto((props: { session: InboundCallSession }) => {
-  const { session } = props;
+type Props = { session: InboundCallSession; store: Store };
+
+const InboundSession = auto((props: Props) => {
+  const { session, store } = props;
   const [forwardPopoverVisible, setForwardPopoverVisible] = useState(false);
   const [forwardToNumber, setForwardToNumber] = useState("");
   const [replyPopoverVisible, setReplyPopoverVisible] = useState(false);
@@ -111,6 +115,14 @@ const InboundSession = auto((props: { session: InboundCallSession }) => {
           <Button onClick={() => session.decline()} danger>
             Decline
           </Button>
+          <Tooltip
+            title="Answer using the Call Control REST API. This demonstrates an API outside the Web Phone SDK’s core features."
+            trigger={["hover", "focus"]}
+          >
+            <Button onClick={() => store.callControlAnswer(session)}>
+              API Answer
+            </Button>
+          </Tooltip>
         </Space>
       ) : null}
       {session.state === "answered" ? (
