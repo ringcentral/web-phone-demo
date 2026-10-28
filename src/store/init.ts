@@ -11,7 +11,8 @@ const init = async () => {
   store.refreshToken = (await localforage.getItem("refreshToken")) ?? "";
   store.server =
     (await localforage.getItem("server")) ?? "https://platform.ringcentral.com";
-  store.clientId = (await localforage.getItem("clientId")) ?? "";
+  store.clientId =
+    (await localforage.getItem("clientId")) ?? "jJxc4f1ASJ2JlizgMdNnvg";
   store.deviceSerial = (await localforage.getItem("deviceSerial")) ?? "";
   store.clientSecret = (await localforage.getItem("clientSecret")) ?? "";
   store.jwtToken = (await localforage.getItem("jwtToken")) ?? "";
