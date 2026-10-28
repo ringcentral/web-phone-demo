@@ -10,7 +10,7 @@ export default defineConfig({
     hmr: false,
   },
   build: {
-    outDir: "../docs",
+    outDir: "../temp",
     emptyOutDir: true,
     rollupOptions: {
       input: {

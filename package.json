@@ -7,7 +7,7 @@
   "scripts": {
     "generate:versions": "node scripts/generate-versions.js",
     "lint": "biome check --write src scripts package.json biome.json",
-    "release": "pnpm generate:versions && vite build && gh-pages -d docs && rm -rf docs",
+    "release": "pnpm generate:versions && vite build && gh-pages -d temp && rm -rf temp",
     "serve": "pnpm generate:versions && vite",
     "postinstall": "pnpm generate:versions",
     "test": "vitest run"
